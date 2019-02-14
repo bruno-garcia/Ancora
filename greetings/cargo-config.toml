@@ -1,0 +1,14 @@
+# ${NDK_HOME} doesn't expand so replace it: /Users/bruno/Library/Android/sdk/ndk-bundle
+# To be copied to: cp cargo-config.toml ~/.cargo/config
+
+[target.aarch64-linux-android]
+ar = "Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/aarch64-linux-android-ar"
+linker = "Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/aarch64-linux-android26-clang"
+
+#[target.armv7-linux-androideabi]
+#ar = "Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/arm-linux-androideabi-ar"
+#linker = "Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/arm-linux-androideabi-clang"
+
+[target.i686-linux-android]
+ar = "Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/i686-linux-android-ar"
+linker = "Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/i686-linux-android16-clang"

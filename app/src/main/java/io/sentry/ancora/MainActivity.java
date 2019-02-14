@@ -1,4 +1,5 @@
 package io.sentry.ancora;
+import android.widget.TextView;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -11,6 +12,10 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
 
+    static {
+        System.loadLibrary("greetings");
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,7 +27,8 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                RustGreetings g = new RustGreetings();
+                Snackbar.make(view, g.sayHello("Ancora"), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
