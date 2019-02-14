@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 RustGreetings g = new RustGreetings();
-                Snackbar.make(view, g.sayHello("Ancora"), Snackbar.LENGTH_LONG)
+                Snackbar.make(view, g.sayHello("panic"), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });

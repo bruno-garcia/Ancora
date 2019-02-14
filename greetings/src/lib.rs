@@ -6,7 +6,10 @@ pub extern "C" fn rust_greeting(to: *const c_char) -> *mut c_char {
     let c_str = unsafe { CStr::from_ptr(to) };
     let recipient = match c_str.to_str() {
         Err(_) => "there",
-        Ok(string) => string,
+        Ok(string) => match string {
+            "panic" => panic!("You asked for it!"),
+            _ => string
+        },
     };
 
     CString::new("Hello ".to_owned() + recipient)
