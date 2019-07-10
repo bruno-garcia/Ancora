@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         Context ctx = this.getApplicationContext();
-        String sentryDsn = "https://5fd7a6cda8444965bade9ccfd3df9882@sentry.io/1188141";
+        String sentryDsn = "https://46fee3fb0e2a45cca85f2f2c41efe52c@sentry.io/1379099";
         Sentry.init(sentryDsn, new AndroidSentryClientFactory(ctx));
 
         FloatingActionButton fab = findViewById(R.id.fab);

@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-//apply plugin: 'io.sentry.android.gradle'
+apply plugin: 'io.sentry.android.gradle'
 
 android {
     compileSdkVersion 28
