@@ -1,4 +1,5 @@
 package io.sentry.ancora;
+import android.content.Context;
 import android.widget.TextView;
 
 import android.os.Bundle;
@@ -9,6 +10,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import io.sentry.Sentry;
+import io.sentry.android.AndroidSentryClientFactory;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,15 +27,30 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        Context ctx = this.getApplicationContext();
+        String sentryDsn = "https://5fd7a6cda8444965bade9ccfd3df9882@sentry.io/1188141";
+        Sentry.init(sentryDsn, new AndroidSentryClientFactory(ctx));
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RustGreetings g = new RustGreetings();
-                Snackbar.make(view, g.sayHello("panic"), Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                try {
+                    unsafeMethod();
+                } catch (Exception e) {
+                    Sentry.capture(e);
+                }
+
+                // Native crash:
+//                RustGreetings g = new RustGreetings();
+//                Snackbar.make(view, g.sayHello("panic"), Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
             }
         });
+    }
+
+    void unsafeMethod() {
+        throw new UnsupportedOperationException("You shouldn't call this!");
     }
 
     @Override
