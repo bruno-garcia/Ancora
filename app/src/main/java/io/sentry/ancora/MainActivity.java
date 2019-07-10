@@ -35,16 +35,22 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Native crash:
+                RustGreetings g = new RustGreetings();
+                Snackbar.make(view, g.sayHello("panic"), Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+
+        FloatingActionButton fob = findViewById(R.id.fob);
+        fob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 try {
                     unsafeMethod();
                 } catch (Exception e) {
                     Sentry.capture(e);
                 }
-
-                // Native crash:
-//                RustGreetings g = new RustGreetings();
-//                Snackbar.make(view, g.sayHello("panic"), Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
             }
         });
     }
