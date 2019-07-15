@@ -35,6 +35,32 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    flavorDimensions "type", "state"
+    productFlavors {
+        motor {
+            dimension "type"
+            applicationIdSuffix ".motor"
+            versionNameSuffix "-motor"
+            sentry {
+                dsn "https://fake@sentry.io/123123"
+            }
+        }
+        sail {
+            dimension "type"
+            applicationIdSuffix ".sail"
+            versionNameSuffix "-sail"
+        }
+        anchored {
+            dimension "state"
+            applicationIdSuffix ".anchored"
+            versionNameSuffix "-anchored"
+        }
+        moving {
+            dimension "state"
+            applicationIdSuffix ".moving"
+            versionNameSuffix "-moving"
+        }
+    }
 }
 
 dependencies {
