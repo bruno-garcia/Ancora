@@ -35,6 +35,47 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    flavorDimensions "type", "state"
+    productFlavors {
+        motor {
+            dimension "type"
+            applicationIdSuffix ".motor"
+            versionNameSuffix "-motor"
+        }
+        sail {
+            dimension "type"
+            applicationIdSuffix ".sail"
+            versionNameSuffix "-sail"
+        }
+        anchored {
+            dimension "state"
+            applicationIdSuffix ".anchored"
+            versionNameSuffix "-anchored"
+        }
+        moving {
+            dimension "state"
+            applicationIdSuffix ".moving"
+            versionNameSuffix "-moving"
+        }
+    }
+    // From: https://github.com/getsentry/sentry-java/issues/667#issuecomment-456169867
+    // Specify that we want to split up the APK based on ABI
+    // faster builds and smaller APK, but more than one APK per release
+    splits {
+        abi {
+            // Enable ABI split
+            enable true
+
+            // Clear list of ABIs
+            reset()
+
+            // Specify each architecture currently supported
+            include "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
+
+            // Specify that we do not want an additional universal SDK
+            universalApk false
+        }
+    }
 }
 
 dependencies {
