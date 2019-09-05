@@ -13,10 +13,6 @@ import android.view.MenuItem;
 
 import io.sentry.Sentry;
 import io.sentry.android.AndroidSentryClientFactory;
-import io.sentry.event.EventBuilder;
-import io.sentry.event.interfaces.ExceptionInterface;
-import io.sentry.event.interfaces.ExceptionMechanism;
-import io.sentry.event.interfaces.ExceptionMechanismThrowable;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         Context ctx = this.getApplicationContext();
-//        String sentryDsn = "https://46fee3fb0e2a45cca85f2f2c41efe52c@sentry.io/1379099";
         String sentryDsn = "https://46fee3fb0e2a45cca85f2f2c41efe52c@sentry.io/1379099?" +
+//        String sentryDsn = "http://abd6fcc0b2f74730ac354a1c2a84443e@localhost:8000/1?" +
                 "stacktrace.app.packages=io.sentry.ancora&" +
                 "anr.enable=true&" +
                 "anr.timeoutIntervalMs=1000";
